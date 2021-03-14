@@ -17,8 +17,8 @@
 
     <repositories>
         <repository>
-            <id>jMath-mvn-repo</id>
-            <url>https://raw.github.com/aoklynin/jMath/mvn-repo/</url>
+            <id>javaGLHelper-mvn-repo</id>
+            <url>https://raw.github.com/aoklynin/jMath/javaGLHelper-repo/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -30,6 +30,11 @@
         <dependency>
             <groupId>com.github.aoklyunin</groupId>
             <artifactId>jMath</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.aoklyunin</groupId>
+            <artifactId>jCollections</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -53,9 +58,9 @@
             <version>2.11.1</version>
         </dependency>
         <dependency>
-            <groupId>com.sun.istack</groupId>
-            <artifactId>maven-istack-commons-plugin</artifactId>
-            <version>2.11</version>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>13.0</version>
         </dependency>
         <dependency>
             <groupId>org.jogamp.jogl</groupId>

@@ -1,0 +1,1 @@
+{"@class":"com.github.aoklyunin.javaGLHelper.scrollers.params.RangeScrollerParams","type":"HORIZONTAL","renderPosMin":0.005,"renderPosMax":0.045,"divideCoeff":5,"renderOffset":0.685,"renderSize":0.2,"accuracy":0.0,"initDisplayRange":20,"minDisplayRange":5}
