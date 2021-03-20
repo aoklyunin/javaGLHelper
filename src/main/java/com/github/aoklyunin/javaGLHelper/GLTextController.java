@@ -24,11 +24,6 @@ public class GLTextController {
     @NotNull
     private final CaptionParams captionParams;
     /**
-     * контроллер текста от jogamp
-     */
-    @NotNull
-    private final TextRenderer textRenderer;
-    /**
      * ширина окна
      */
     private final int clientWidth;
@@ -59,9 +54,6 @@ public class GLTextController {
         this.clientWidth = clientWidth;
         this.glCS = new CoordinateSystem2d(0, 1, 0, 1);
         this.clientCS = new CoordinateSystem2i(0, clientWidth, 0, clientHeight);
-        textRenderer = new TextRenderer(new Font(
-                captionParams.getFontName(), captionParams.isBold() ? Font.BOLD : Font.PLAIN, captionParams.getFontSize())
-        );
         this.captionParams = captionParams;
     }
 
@@ -106,6 +98,9 @@ public class GLTextController {
      */
     private void drawText(@NotNull String text, @NotNull Vector2i pos, @Nullable Vector3d color) {
         color = Objects.requireNonNullElse(color, Vector3d.ones());
+        TextRenderer textRenderer = new TextRenderer(new Font(
+                captionParams.getFontName(), captionParams.isBold() ? Font.BOLD : Font.PLAIN, captionParams.getFontSize())
+        );
         textRenderer.beginRendering(clientWidth, clientHeight);
         textRenderer.setColor((float) color.x, (float) color.y, (float) color.z, 1);
         textRenderer.draw(text, pos.x, pos.y);
@@ -133,6 +128,9 @@ public class GLTextController {
      */
     private void drawText(@NotNull String text, @NotNull Vector2i pos, @Nullable Vector4d color) {
         color = Objects.requireNonNullElse(color, new Vector4d(1, 1, 1, 1));
+        TextRenderer textRenderer = new TextRenderer(new Font(
+                captionParams.getFontName(), captionParams.isBold() ? Font.BOLD : Font.PLAIN, captionParams.getFontSize())
+        );
         textRenderer.beginRendering(clientWidth, clientHeight);
         textRenderer.setColor((float) color.x, (float) color.y, (float) color.z, (float) color.w);
         textRenderer.draw(text, pos.x, pos.y);
@@ -162,12 +160,12 @@ public class GLTextController {
 
     /**
      * Строковое представление объекта вида:
-     * "textRenderer, clientWidth, clientHeight, glCS, clientCS"
+     * "clientWidth, clientHeight, glCS, clientCS"
      *
      * @return строковое представление объекта
      */
     protected String getString() {
-        return textRenderer + ", " + clientWidth + ", " + clientHeight + ", " + glCS + ", " + clientCS;
+        return clientWidth + ", " + clientHeight + ", " + glCS + ", " + clientCS;
     }
 
     @Override
@@ -181,7 +179,6 @@ public class GLTextController {
         if (clientHeight != that.clientHeight) return false;
         if (!Objects.equals(captionParams, that.captionParams))
             return false;
-        if (!Objects.equals(textRenderer, that.textRenderer)) return false;
         if (!Objects.equals(glCS, that.glCS)) return false;
         return Objects.equals(clientCS, that.clientCS);
     }
@@ -189,7 +186,6 @@ public class GLTextController {
     @Override
     public int hashCode() {
         int result = captionParams.hashCode();
-        result = 31 * result + textRenderer.hashCode();
         result = 31 * result + clientWidth;
         result = 31 * result + clientHeight;
         result = 31 * result + glCS.hashCode();

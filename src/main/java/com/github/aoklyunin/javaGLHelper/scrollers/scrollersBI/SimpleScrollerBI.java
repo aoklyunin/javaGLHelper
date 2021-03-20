@@ -1,6 +1,5 @@
 package com.github.aoklyunin.javaGLHelper.scrollers.scrollersBI;
 
-import com.github.aoklyunin.jCollections.Procedure;
 import com.github.aoklyunin.javaGLHelper.GLAlgorithms;
 import com.github.aoklyunin.javaGLHelper.scrollers.params.SimpleScrollerParams;
 import com.jogamp.opengl.GL2;
@@ -169,7 +168,7 @@ public class SimpleScrollerBI {
      * при помощи клика мыши
      */
     @Nullable
-    private Procedure onChangePosByMouseClick;
+    private Runnable onChangePosByMouseClick;
 
     /**
      * параметры скроллера
@@ -328,7 +327,7 @@ public class SimpleScrollerBI {
             if (processChangedScrollerPos != null)
                 processChangedScrollerPos.accept(cursorPos);
             if (onChangePosByMouseClick != null)
-                onChangePosByMouseClick.operate();
+                onChangePosByMouseClick.run();
             return true;
         }
         return false;
